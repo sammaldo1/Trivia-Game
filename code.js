@@ -4,12 +4,59 @@
 // YOUR CODE HERE!
 
 
+
+
+let theAnswer = "";
+let theQuestion
+let categoryId
+let jeopardyData
+let categoryTitle
+fetch("https://jservice.io/api/random/")
+    .then(response => response.json())
+    .then(data => {
+        jeopardyData = data[0];
+        theQuestion = jeopardyData.question;
+        getQuestionFromHTML.append(theQuestion);
+        theAnswer = jeopardyData.answer.toLowerCase();
+        categoryTitle = jeopardyData.category.title;
+        getCategoryFromHTML.append(categoryTitle)
+        categoryId = jeopardyData.id;
+    })
+let userAnswer;
 let totalScore = 0;
 let getTotalScoreToHTML = document.getElementById("totalPoints")
-let getAnswerFromHTML = document.querySelector(answers);
 let getQuestionFromHTML = document.getElementById("questions");
 let getCategoryFromHTML = document.getElementById("categoryTitle");
 let submitButton = document.getElementById("submitAnswer");
+let showMessage = document.getElementById("showMessage");
+
+
+submitButton.addEventListener("click", checkAnswers)
+function checkAnswers(event) {
+    event.preventDefault();
+
+    let userAnswer = document.getElementById("userAnswer")
+    if (userAnswer.value.toLowerCase() === theAnswer) {
+        totalScore += 1;
+        console.log(totalScore)
+        getTotalScoreToHTML.innerHTML = `${totalScore}`
+        showMessage.innerText = `Good Job! Keep it going!`
+        setTimeout(function () {
+            showMessage.innerText = "";
+        }, 5000);
+
+    }
+
+    else {
+        totalScore = 0;
+        let endButton = document.createElement("Button");
+        endButton.addEventListener("click", function () {
+            endButton.innerHTML = `Sorry! The correct answer was: ${theAnswer}! You're final score was: ${totalScore}.Try Again!`;
+        })
+
+    }
+
+}
 
 //use fetch to pull questions from the api 
 //use a api that doesn't require an API key
@@ -55,26 +102,17 @@ let submitButton = document.getElementById("submitAnswer");
 // div id="questions" for q's
 //div id="answers"
 
-let theAnswer = "";
-let theQuestion
-let categoryId
-let jeopardyData
-let categoryTitle
-fetch("https://jservice.io/api/random/")
-    .then(response => response.json())
-    .then(data => {
-        jeopardyData = data[0];
-        theQuestion = jeopardyData.question;
-        getQuestionFromHTML.append(theQuestion);
-        theAnswer = jeopardyData.answer;
-        theAnswer.toString().toLowerCase
-        categoryTitle = jeopardyData.category.title;
-        getCategoryFromHTML.append(categoryTitle)
-        categoryId = jeopardyData.id;
-    })
 
 
-//will need to append one question to the p tag to show user the q
+
+    //✔️will need a button that allows the code to rerender to start game play over again.
+    //will be called if incorrect answer is called. 
+
+    //✔️will need a if statement for totalScore 
+        //if answer is correct +1
+        //else message"Sorry that was incorrect". try again with a button
+
+        //will need to append one question to the p tag to show user the q
 //will be done after fetch and category is selected
 //will use querySelector and append results. 
 
@@ -88,33 +126,3 @@ fetch("https://jservice.io/api/random/")
 //will need to if statement to either add to score or give message was wrong and try again with button for restart
 ////if correct answer add one point to total
 //keep score until user answewrs incorrect answer use a if statement to keep track of score:correct = +1 incorrect score = 0 then give play again button
-
-
-submitButton.onclick = function (event) {
-    event.preventDefault();
-
-    if (getAnswerFromHTML === theAnswer) {
-        totalScore += 1;
-        getTotalScorefromHTML.append(totalScore)
-        document.write(`Good Job! Keep it going!`)
-        setInterval(document.write, 5000);
-        getQuestionFromHTML.push(theQuestion)
-    }
-    else {
-        totalScore = 0;
-        let endButton = document.createElement("Button");
-        endButton.addEventListener("click", function () {
-            endButton.innerHTML = `Sorry! The correct answer was: ${theAnswer}! You're final score was: ${totalScore}.Try Again!`;
-        });
-
-
-
-    }
-}
-
-    //✔️will need a button that allows the code to rerender to start game play over again.
-    //will be called if incorrect answer is called. 
-
-    //✔️will need a if statement for totalScore 
-        //if answer is correct +1
-        //else message"Sorry that was incorrect". try again with a button

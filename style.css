@@ -14,6 +14,9 @@ h2 {
 #start {
     align-content: center;
 }
+#totalScore{
+    text-align: center;
+}
 #totalPoints {
     text-align: center;
 }
