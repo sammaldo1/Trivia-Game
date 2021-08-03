@@ -1,1 +1,32 @@
 /* Write your CSS Here. */
+h1 {
+    text-align: center;
+}
+h2 {
+    text-align: center;
+}
+#categoryTitle {
+    text-align: center;
+}
+.container {
+    text-align: center;  
+}
+#start {
+    align-content: center;
+}
+#totalPoints {
+    text-align: center;
+}
+#question {
+    
+    text-align: center; 
+}
+#questions {
+    text-align: center;  
+}
+#answers {
+    align-content: center;  
+}
+#submitAnswer {
+    align-content: center
+}
