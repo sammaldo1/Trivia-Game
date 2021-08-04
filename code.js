@@ -4,68 +4,96 @@
 // YOUR CODE HERE!
 
 
+let totalScore = 0;
+let totalPointsElement = document.getElementById("totalPoints");
+let questionsElement = document.getElementById("questions");
+let categoryTitleElement = document.getElementById("categoryTitle");
+let submitButtonElement = document.getElementById("submitAnswer");
+let showMessageElement = document.getElementById("showMessage");
+let categoryIdElement = document.getElementById("h2");
+let nextQuestionElement = document.getElementById("nextQuestion");
+let answerElement = document.getElementById("answers");
+let userAnswer = document.getElementById("userAnswer");
+nextQuestionElement.style.display = "none";
 
 
 let theAnswer = "";
 let theQuestion
-let categoryId
 let jeopardyData
 let categoryTitle
-fetch("https://jservice.io/api/random/")
+let questionIndex = []
+let nextQuestionData
+
+
+fetch("https://jservice.io/api/random/?count=100")
     .then(response => response.json())
     .then(data => {
         jeopardyData = data[0];
+        nextQuestionData = data
         theQuestion = jeopardyData.question;
-        getQuestionFromHTML.append(theQuestion);
-        theAnswer = jeopardyData.answer.toLowerCase();
+        questionsElement.append(theQuestion);
+        theAnswer = jeopardyData.answer.toLowerCase().toString();
         categoryTitle = jeopardyData.category.title;
-        getCategoryFromHTML.append(categoryTitle)
-        categoryId = jeopardyData.id;
+        categoryTitleElement.append(categoryTitle)
+        const categoryId = jeopardyData.id;
+        submitButtonElement.addEventListener("click", checkAnswers);
+
+        function checkAnswers(event) {
+            event.preventDefault()
+
+            if (userAnswer.value.toString().toLowerCase() === theAnswer) {
+                totalScore += 1;
+                totalPointsElement.innerHTML = `${totalScore}`
+                showMessageElement.innerHTML = `Good Job! Keep it going! You're score right now is: ${totalScore}!`;
+                setTimeout(function () {
+                    showMessageElement.innerText = "";
+                }, 5000);
+                nextQuestionElement.style.display = null;
+                nextQuestionElement.addEventListener("click", nextQuestionsCheckAndpush);
+            }
+
+            else {
+                totalScore = 0;
+                let endButton = document.createElement("Button");
+                endButton.addEventListener("click", function () {
+                    endButton.innerHTML = `Sorry! The correct answer was: ${theAnswer}! You're final score was: ${totalScore}.Try Again!`;
+                })
+
+            }
+
+            function nextQuestionsCheckAndpush(event) {
+                event.preventDefault();
+                nextQuestionData = data[Math.floor(Math.random() * 100)];
+                console.log(nextQuestionData)
+                questionsElement.innerHTML = nextQuestionData.question;
+
+                theAnswer = nextQuestionData.answer.toLowerCase().toString();
+                nextQuestionData.id = jeopardyData.id;
+
+                nextQuestionData.category.title = jeopardyData.category.title;
+                categoryTitleElement.innerHTML = nextQuestionData.category.title;
+                if (userAnswer.value.toString().toLowerCase() === theAnswer) {
+                    totalScore + 1;
+                    totalPointsElement.innerHTML = `${totalScore}`
+                    showMessageElement.innerHTML = `Good Job! Keep it going! You're score right now is: ${totalScore}!`;
+                    setTimeout(function () {
+                        showMessageElement.innerText = "";
+                    }, 5000);
+
+                }
+
+            }
+        }
     })
-let userAnswer;
-let totalScore = 0;
-let getTotalScoreToHTML = document.getElementById("totalPoints")
-let getQuestionFromHTML = document.getElementById("questions");
-let getCategoryFromHTML = document.getElementById("categoryTitle");
-let submitButton = document.getElementById("submitAnswer");
-let showMessage = document.getElementById("showMessage");
 
 
-submitButton.addEventListener("click", checkAnswers)
-function checkAnswers(event) {
-    event.preventDefault();
 
-    let userAnswer = document.getElementById("userAnswer")
-    if (userAnswer.value.toLowerCase() === theAnswer) {
-        totalScore += 1;
-        console.log(totalScore)
-        getTotalScoreToHTML.innerHTML = `${totalScore}`
-        showMessage.innerText = `Good Job! Keep it going!`
-        setTimeout(function () {
-            showMessage.innerText = "";
-        }, 5000);
-
-    }
-
-    else {
-        totalScore = 0;
-        let endButton = document.createElement("Button");
-        endButton.addEventListener("click", function () {
-            endButton.innerHTML = `Sorry! The correct answer was: ${theAnswer}! You're final score was: ${totalScore}.Try Again!`;
-        })
-
-    }
-
-}
-
-//use fetch to pull questions from the api 
-//use a api that doesn't require an API key
 //use math.random()
 //questions will come from a single category, category must be random but only one category
 //get a categories ID from a random question to use a parameter which gives questions in a particular category
 //once random category is selected the questions will be randomly chosen as well. 
 //questions using div id="questions"
-//present a single q to the user
+
 //when game begins a question will appear on the HTML, the questions & all next q's after will belong to the same category
 //CANT be an alert or prompt, will use <p> tag
 
