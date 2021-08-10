@@ -22,7 +22,6 @@ let theQuestion = "";
 let categoryTitle;
 let randomQuestion;
 let randomQuestionIndex;
-let usedQuestions = [];
 let fetchData;
 let arrayOfQuestions;
 
