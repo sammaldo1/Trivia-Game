@@ -1,47 +1,143 @@
-/* Write your CSS Here. */
-h1 {
-    text-align: center;
-}
-h2 {
-    text-align: center;
-}
-#categoryTitle {
-    text-align: center;
-}
 .container {
-    text-align: center;  
+  position: relative;
+  box-sizing: border-box;
+  text-align: center;
+  align-content: center;
 }
-#start {
-    align-content: center;
-}
-#totalScore{
-    text-align: center;
-}
-#totalPoints {
-    text-align: center;
-}
-#question {
-    
-    text-align: center; 
-}
-#questions {
-    text-align: center;  
-}
-#answers {
-    align-content: center;  
-}
-#submitAnswer {
-    align-content: center
-}
-/* #nextQuestion{
-        background-color: gainsboro;
-        border: 1px solid black;
-        color: black;
-        padding:0.5rem 2.8rem;
-        text-align: center;
-        text-decoration: none;
-        font-size:  1em;
-        display:inline-block;
-        
-} */
 
+.background::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-image: url("./scott-webb-tFbHTPvToU0-unsplash.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+}
+a:link,
+a:visited {
+  position: relative;
+  font: bold;
+  color: #299c76;
+  border: 4px inset #299c76;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+h1 {
+  position: relative;
+  text-align: center;
+  width: 700px;
+  height: 150px;
+  border: 5px double #447061;
+  font-size: 100px;
+  font-stretch: extra-expanded;
+  color: #299c76;
+  margin: 0px auto 50px;
+}
+
+h2 {
+  position: relative;
+  font-size: 40px;
+  font-stretch: extra-expanded;
+  border: 3px inset #2aa77d;
+  width: 250px;
+  height: 50px;
+  margin: auto;
+  color: #299c76;
+}
+
+#categoryTitle {
+  position: relative;
+  border: 4px outset #62e0b6;
+  font-size: 35px;
+  margin: 0px auto 75px;
+  width: 400px;
+  height: 40px;
+  color: #299c76;
+}
+
+.column.totalPoints {
+  position: relative;
+  float: right;
+  padding: 10px;
+}
+
+#totalPoints {
+  position: relative;
+  border: 5px dotted #62e0b6;
+  font-size: 40px;
+  margin: auto;
+  width: 300px;
+  height: 150px;
+  color: #299c76;
+  border-radius: 25px;
+}
+
+#question {
+  position: relative;
+  font-size: 40px;
+  font-stretch: extra-expanded;
+  border: 3px inset #2aa77d;
+  width: 200px;
+  height: 50px;
+  margin: -30px auto -30px;
+  color: #299c76;
+}
+
+#questions {
+  position: relative;
+  border: 4px outset #62e0b6;
+  text-align: center;
+  font-size: 20px;
+  margin: 30px auto 10px;
+  width: 400px;
+  height: 75px;
+  color: #299c76;
+  padding: auto;
+}
+
+#userAnswer {
+  position: relative;
+  color: rgb(10, 61, 61);
+  border: 4px outset #2aa77d;
+  height: 30px;
+  width: 230px;
+  margin: 25px auto 0px;
+}
+
+#submitAnswer,
+#nextQuestion {
+  position: relative;
+  border: 4px inset #62e0b6;
+  text-align: center;
+  height: 35px;
+  width: 120px;
+}
+
+#showMessage {
+  position: relative;
+  color: #299c76;
+  text-align: center;
+  font-size: 40px;
+}
+
+#endMessage {
+  position: relative;
+  color: #299c76;
+  text-align: center;
+  font-size: 40px;
+}
+
+#endButton {
+  position: relative;
+  border: 4px inset #62e0b6;
+  align-content: center;
+  height: 35px;
+  width: 120px;
+}
