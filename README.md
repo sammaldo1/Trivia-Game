@@ -17,3 +17,7 @@ what it does:
 + If the answer is correct the score will add 1 point, and a congratulatory message will appear on the screen and the next question will display to screen.
 
 + If the answer is incorrect, a message will appear on the screen with the final score, a button will appear for user to try again and if clicked a new category will be provided.
+
+Want to play?
+-
+*https://sammaldo1.github.io/Trivia-Game/*
